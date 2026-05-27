@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BSP Green Loans Hackathon | Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-badge"><i data-lucide="leaf" aria-hidden="true"></i></span>
+          BSP Green Loans Hackathon
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="precheck.html">Pre-Check</a>
+          <a href="products.html">Green Products</a>
+          <a href="about.html">Team Bingo</a>
+        </nav>
+        <a class="cta-btn cta-primary" href="precheck.html">
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>
+          Check My Eligibility
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-section">
+        <div class="container reveal">
+          <h2>BSP Solar Loan Application</h2>
+          <p class="section-lead">
+            Complete this simple application form for the BSP Solar Loan once your pre-check is fully ready.
+          </p>
+
+          <div class="application-card">
+            <form id="applicationForm" class="application-form">
+              <div class="form-grid">
+                <div class="field-group">
+                  <label class="field-label" for="fullName">Full Name</label>
+                  <input id="fullName" name="fullName" type="text" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="phoneNumber">Phone Number</label>
+                  <input id="phoneNumber" name="phoneNumber" type="tel" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="accountNumber">BSP Account Number</label>
+                  <input id="accountNumber" name="accountNumber" type="text" required />
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="loanAmount">Loan Amount (PGK)</label>
+                  <input id="loanAmount" name="loanAmount" type="number" min="0" step="0.01" required />
+                </div>
+                <div class="field-group field-group-full">
+                  <label class="field-label" for="loanPurpose">Loan Purpose</label>
+                  <select id="loanPurpose" name="loanPurpose" required>
+                    <option value="Solar" selected>Solar</option>
+                  </select>
+                </div>
+              </div>
+
+              <label class="checkbox-row" for="documentsReady">
+                <input id="documentsReady" name="documentsReady" type="checkbox" required />
+                <span>I confirm my documents are ready</span>
+              </label>
+
+              <button class="cta-btn cta-primary" type="submit">Submit Application</button>
+            </form>
+
+            <div id="applicationConfirmation" class="result-box application-confirmation" hidden>
+              <strong id="confirmationMessage"></strong>
+              <a class="cta-btn cta-primary result-action" href="index.html">Return to Home</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        Empowering sustainable development through accessible green finance • Team Bingo
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="main.js"></script>
+    <script src="application.js"></script>
+  </body>
+</html>

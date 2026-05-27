@@ -230,7 +230,17 @@
         position: relative;
         display: inline-flex;
         margin-left: 0.35rem;
+        padding: 0;
+        border: 0;
+        background: transparent;
         color: var(--forest-green);
+        cursor: pointer;
+      }
+
+      .tooltip:focus-visible {
+        outline: 2px solid #74b87a;
+        outline-offset: 2px;
+        border-radius: 5px;
       }
 
       .tooltip span {
@@ -249,7 +259,8 @@
         z-index: 10;
       }
 
-      .tooltip:hover span {
+      .tooltip:hover span,
+      .tooltip:focus-within span {
         visibility: visible;
       }
 
@@ -466,28 +477,39 @@
               <h3>Solar Rooftop Upgrade Loan</h3>
               <p>Funding support for rooftop solar procurement and installation for homes and SMEs.</p>
               <p class="category">Eligibility: Individual / SME</p>
-              <a class="link-btn" href="#precheck">Learn More</a>
+              <a class="link-btn" href="#precheck" aria-label="Learn more about Solar Rooftop Upgrade Loan"
+                >Learn More</a
+              >
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Energy Efficient Equipment Facility</h3>
               <p>Loan package to replace high-energy equipment with verified efficient alternatives.</p>
               <p class="category">Eligibility: SME / Business</p>
-              <a class="link-btn" href="#precheck">Learn More</a>
+              <a
+                class="link-btn"
+                href="#precheck"
+                aria-label="Learn more about Energy Efficient Equipment Facility"
+                >Learn More</a
+              >
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Community Water Resilience Fund</h3>
               <p>Supports partnerships delivering water-saving and resilience-focused infrastructure.</p>
               <p class="category">Eligibility: Strategic Partnership</p>
-              <a class="link-btn" href="#precheck">Learn More</a>
+              <a class="link-btn" href="#precheck" aria-label="Learn more about Community Water Resilience Fund"
+                >Learn More</a
+              >
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Green Mobility Starter Loan</h3>
               <p>Affordable financing for low-emission transport upgrades and supplier-backed purchases.</p>
               <p class="category">Eligibility: Individual / Partnership</p>
-              <a class="link-btn" href="#precheck">Learn More</a>
+              <a class="link-btn" href="#precheck" aria-label="Learn more about Green Mobility Starter Loan"
+                >Learn More</a
+              >
             </article>
           </div>
         </div>
@@ -565,13 +587,16 @@
         const data = typeof item === "string" ? { label: item } : item;
         return `
           <div class="check-item">
-            <input type="checkbox" id="req-${index}" />
+            <input type="checkbox" id="req-${index}" name="requirement-${index}" />
             <div>
               <label for="req-${index}">
                 ${data.label}
                 ${
                   data.note
-                    ? `<span class="tooltip"><i data-lucide="info" aria-hidden="true"></i><span>${data.note}</span></span>`
+                    ? `<button class="tooltip" type="button" aria-label="More information" aria-describedby="tip-${index}">
+                        <i data-lucide="info" aria-hidden="true"></i>
+                        <span id="tip-${index}" role="tooltip">${data.note}</span>
+                      </button>`
                     : ""
                 }
               </label>

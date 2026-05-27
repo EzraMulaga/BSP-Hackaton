@@ -15,10 +15,6 @@ const requirements = {
       { title: "Loan Terms", detail: "Available repayment period: 2 to 5 years." }
     ]
   },
-  partnership: {
-    items: [{ label: "Memorandum of Understanding (MOU)" }],
-    infoCards: []
-  },
   individual: {
     items: [
       {

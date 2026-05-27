@@ -90,9 +90,14 @@ function updateResult() {
   result.hidden = false;
   result.innerHTML = `
     <strong>Readiness Score: ${checked}/${total} (${score}%)</strong>
-    <div class="result-badge ${ready ? "ready" : "not-ready"}">
-      ${ready ? "Ready to Apply" : "Not Yet Ready"}
+    <div class="progress-track" role="progressbar" aria-valuenow="${score}" aria-valuemin="0" aria-valuemax="100" aria-label="Pre-check readiness">
+      <div class="progress-bar" style="width: ${score}%"></div>
     </div>
+    ${
+      ready
+        ? `<a class="cta-btn cta-primary result-action" href="application.html">Proceed to Application <span aria-hidden="true">→</span></a>`
+        : `<div class="result-badge not-ready">Not Yet Ready</div>`
+    }
   `;
 }
 

@@ -1,1 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BSP Green Loans Hackathon | Team Bingo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --forest-green: #2e7d32;
+        --light-green: #a5d6a7;
+        --white: #ffffff;
+        --gold: #d4af37;
+        --ink: #1f2937;
+        --muted: #5f6b7a;
+        --card: #f7fbf7;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--ink);
+        background: linear-gradient(180deg, #f9fff9, #ffffff 30%, #f8fff8);
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1100px, 92vw);
+        margin: 0 auto;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid #e5efe5;
+        backdrop-filter: blur(8px);
+      }
+
+      .navbar-inner {
+        min-height: 72px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 800;
+        color: var(--forest-green);
+      }
+
+      .brand-badge {
+        width: 36px;
+        height: 36px;
+        border-radius: 11px;
+        display: grid;
+        place-items: center;
+        background: var(--forest-green);
+        color: var(--white);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .nav-links a {
+        font-weight: 600;
+        color: #3f4d3f;
+      }
+
+      .cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        border: none;
+        border-radius: 999px;
+        padding: 0.72rem 1.2rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta-primary {
+        background: var(--forest-green);
+        color: var(--white);
+        box-shadow: 0 10px 20px rgba(46, 125, 50, 0.28);
+      }
+
+      .cta-primary:hover {
+        transform: translateY(-2px);
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .hero {
+        padding-top: 96px;
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #eaf7ea;
+        color: var(--forest-green);
+        border: 1px solid #d4ebd5;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 1rem;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.1rem);
+      }
+
+      h2 {
+        font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+        color: #234c26;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .hero-card {
+        background: var(--white);
+        border: 1px solid #dfebdf;
+        border-radius: 22px;
+        padding: 1.4rem;
+        box-shadow: 0 16px 38px rgba(44, 76, 47, 0.08);
+      }
+
+      .section-lead {
+        max-width: 700px;
+        margin-bottom: 1.6rem;
+      }
+
+      .check-panel {
+        background: var(--white);
+        border: 1px solid #dcebdd;
+        border-radius: 20px;
+        padding: 1.2rem;
+      }
+
+      .field-label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #2f4631;
+      }
+
+      select {
+        width: 100%;
+        border-radius: 12px;
+        padding: 0.75rem;
+        border: 1px solid #cde2cf;
+        font: inherit;
+      }
+
+      .checklist {
+        margin-top: 1rem;
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .check-item {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        background: #f6fbf6;
+        border: 1px solid #dcebdc;
+        border-radius: 12px;
+        padding: 0.74rem 0.8rem;
+      }
+
+      .check-item label {
+        color: #2f3d2f;
+        font-weight: 500;
+      }
+
+      .hint {
+        margin-top: 0.25rem;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .tooltip {
+        position: relative;
+        display: inline-flex;
+        margin-left: 0.35rem;
+        color: var(--forest-green);
+      }
+
+      .tooltip span {
+        visibility: hidden;
+        width: 245px;
+        font-size: 0.75rem;
+        position: absolute;
+        left: 50%;
+        top: calc(100% + 8px);
+        transform: translateX(-50%);
+        background: #203020;
+        color: var(--white);
+        border-radius: 8px;
+        padding: 0.55rem;
+        line-height: 1.35;
+        z-index: 10;
+      }
+
+      .tooltip:hover span {
+        visibility: visible;
+      }
+
+      .result-box {
+        margin-top: 1rem;
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        background: #f2f9f2;
+        border: 1px solid #d2e6d3;
+      }
+
+      .result-badge {
+        margin-top: 0.5rem;
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.4rem 0.72rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+
+      .ready {
+        background: #dff6df;
+        color: #14532d;
+      }
+
+      .not-ready {
+        background: #fff3d2;
+        color: #8a5500;
+      }
+
+      .products-grid,
+      .team-grid {
+        margin-top: 1.2rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-card,
+      .team-card {
+        background: var(--white);
+        border: 1px solid #dceadc;
+        border-radius: 18px;
+        padding: 1rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .product-card:hover,
+      .team-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 30px rgba(46, 100, 50, 0.11);
+      }
+
+      .approved-tag {
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: #166534;
+        background: #dcfbe2;
+        display: inline-flex;
+        padding: 0.32rem 0.55rem;
+        border-radius: 999px;
+        margin-bottom: 0.68rem;
+      }
+
+      .category {
+        margin-top: 0.7rem;
+        color: #415641;
+        font-size: 0.84rem;
+        font-weight: 600;
+      }
+
+      .link-btn {
+        margin-top: 0.9rem;
+        background: transparent;
+        border: 1px solid #b4d8b7;
+        border-radius: 10px;
+        padding: 0.5rem 0.75rem;
+        font-weight: 600;
+        color: #255c29;
+      }
+
+      .team-banner {
+        border-radius: 20px;
+        border: 1px solid #d8e9d8;
+        background: linear-gradient(120deg, #eef8ef, #f9fff9);
+        padding: 1.2rem;
+      }
+
+      .avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        color: var(--forest-green);
+        background: #e2f3e3;
+        margin-bottom: 0.6rem;
+      }
+
+      footer {
+        border-top: 1px solid #d8e7d8;
+        padding: 1.4rem 0 2rem;
+        text-align: center;
+        color: #4a584b;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.55s ease;
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .products-grid,
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .navbar-inner {
+          min-height: 66px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="#home" class="brand">
+          <span class="brand-badge"><i data-lucide="leaf"></i></span>
+          BSP Green Loans Hackathon
+        </a>
+        <nav class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#precheck">Pre-Check</a>
+          <a href="#products">Green Products</a>
+          <a href="#about">Team Bingo</a>
+        </nav>
+        <a class="cta-btn cta-primary" href="#precheck">
+          <i data-lucide="clipboard-check"></i>
+          Check My Eligibility
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="container hero-grid reveal">
+          <div>
+            <span class="chip"><i data-lucide="sprout"></i> Sustainable Finance</span>
+            <h1>BSP Green Loans Hackathon</h1>
+            <p>
+              Driving inclusive green financing for resilient businesses, strategic partnerships, and
+              households building a cleaner future.
+            </p>
+            <div style="margin-top: 1.2rem">
+              <a class="cta-btn cta-primary" href="#precheck">
+                Start Pre-Check <i data-lucide="arrow-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <h3 style="margin-bottom: 0.5rem; color: #285b2d">Financing for Sustainable Development</h3>
+            <p>
+              Explore BSP-approved green loan options, check your application readiness, and prepare key
+              documents before submitting your request.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="precheck">
+        <div class="container reveal">
+          <h2>Pre-Check Eligibility</h2>
+          <p class="section-lead">
+            Select your applicant type to view required items. Tick each item you already have to see your
+            readiness score and application status.
+          </p>
+          <div class="check-panel">
+            <label for="applicantType" class="field-label">Applicant Type</label>
+            <select id="applicantType">
+              <option value="">Select applicant category...</option>
+              <option value="sme">SME / Business</option>
+              <option value="partnership">Strategic Partnerships</option>
+              <option value="individual">Individual</option>
+            </select>
+
+            <div id="checklist" class="checklist"></div>
+            <div id="result" class="result-box" hidden></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products">
+        <div class="container reveal">
+          <h2>BSP Approved Green Products</h2>
+          <p class="section-lead">
+            Example financing products under the program. Each offering supports measurable sustainability
+            outcomes and responsible growth.
+          </p>
+          <div class="products-grid">
+            <article class="product-card">
+              <span class="approved-tag">BSP Approved ✓</span>
+              <h3>Solar Rooftop Upgrade Loan</h3>
+              <p>Funding support for rooftop solar procurement and installation for homes and SMEs.</p>
+              <p class="category">Eligibility: Individual / SME</p>
+              <button class="link-btn">Learn More</button>
+            </article>
+            <article class="product-card">
+              <span class="approved-tag">BSP Approved ✓</span>
+              <h3>Energy Efficient Equipment Facility</h3>
+              <p>Loan package to replace high-energy equipment with verified efficient alternatives.</p>
+              <p class="category">Eligibility: SME / Business</p>
+              <button class="link-btn">Learn More</button>
+            </article>
+            <article class="product-card">
+              <span class="approved-tag">BSP Approved ✓</span>
+              <h3>Community Water Resilience Fund</h3>
+              <p>Supports partnerships delivering water-saving and resilience-focused infrastructure.</p>
+              <p class="category">Eligibility: Strategic Partnership</p>
+              <button class="link-btn">Learn More</button>
+            </article>
+            <article class="product-card">
+              <span class="approved-tag">BSP Approved ✓</span>
+              <h3>Green Mobility Starter Loan</h3>
+              <p>Affordable financing for low-emission transport upgrades and supplier-backed purchases.</p>
+              <p class="category">Eligibility: Individual / Partnership</p>
+              <button class="link-btn">Learn More</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="container reveal">
+          <h2>About Team Bingo</h2>
+          <div class="team-banner">
+            <h3 style="margin-bottom: 0.45rem">Mission</h3>
+            <p>
+              Team Bingo is building practical digital tools that simplify green-loan access and guide
+              applicants toward sustainable project success.
+            </p>
+          </div>
+          <div class="team-grid">
+            <article class="team-card">
+              <div class="avatar">EM</div>
+              <h3>Ezra Mulaga</h3>
+              <p>Project Lead</p>
+            </article>
+            <article class="team-card">
+              <div class="avatar">AK</div>
+              <h3>Amelia Kori</h3>
+              <p>UX & Product Designer</p>
+            </article>
+            <article class="team-card">
+              <div class="avatar">JT</div>
+              <h3>James Tino</h3>
+              <p>Frontend Developer</p>
+            </article>
+            <article class="team-card">
+              <div class="avatar">RS</div>
+              <h3>Rina Sali</h3>
+              <p>Data & Compliance Analyst</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        Empowering sustainable development through accessible green finance • Team Bingo
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      const requirements = {
+        sme: [
+          "Annual Report",
+          "Business Plan",
+          "IPA Registration",
+          {
+            label: "Must be a Green Business",
+            note: "A green business reduces environmental impact through clean energy, waste reduction, or eco-friendly operations."
+          },
+          "Supplier Quote"
+        ],
+        partnership: ["Memorandum of Understanding (MOU)"],
+        individual: [
+          "Proof of Income Source",
+          "Age Requirement (minimum age met)",
+          "Active BSP Account Status",
+          "Supplier Quote"
+        ]
+      };
+
+      const applicantType = document.getElementById("applicantType");
+      const checklist = document.getElementById("checklist");
+      const result = document.getElementById("result");
+
+      function toChecklistItem(item, index) {
+        const data = typeof item === "string" ? { label: item } : item;
+        return `
+          <div class="check-item">
+            <input type="checkbox" id="req-${index}" />
+            <div>
+              <label for="req-${index}">
+                ${data.label}
+                ${
+                  data.note
+                    ? `<span class="tooltip"><i data-lucide="info"></i><span>${data.note}</span></span>`
+                    : ""
+                }
+              </label>
+              ${data.note ? `<p class="hint">Hover the info icon for qualification guidance.</p>` : ""}
+            </div>
+          </div>
+        `;
+      }
+
+      function updateResult() {
+        const boxes = checklist.querySelectorAll('input[type="checkbox"]');
+        const checked = checklist.querySelectorAll('input[type="checkbox"]:checked').length;
+        const total = boxes.length;
+        if (!total) {
+          result.hidden = true;
+          return;
+        }
+        const score = Math.round((checked / total) * 100);
+        const ready = checked === total;
+        result.hidden = false;
+        result.innerHTML = `
+          <strong>Readiness Score: ${checked}/${total} (${score}%)</strong>
+          <div class="result-badge ${ready ? "ready" : "not-ready"}">
+            ${ready ? "Ready to Apply" : "Not Yet Ready"}
+          </div>
+        `;
+      }
+
+      applicantType.addEventListener("change", () => {
+        const selected = applicantType.value;
+        checklist.innerHTML = "";
+        result.hidden = true;
+        if (!selected) return;
+        checklist.innerHTML = requirements[selected]
+          .map((item, index) => toChecklistItem(item, index))
+          .join("");
+        checklist.querySelectorAll('input[type="checkbox"]').forEach((box) => {
+          box.addEventListener("change", updateResult);
+        });
+        updateResult();
+        if (window.lucide) window.lucide.createIcons();
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.16 }
+      );
+      document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
+
+      if (window.lucide) window.lucide.createIcons();
+    </script>
+  </body>
+</html>

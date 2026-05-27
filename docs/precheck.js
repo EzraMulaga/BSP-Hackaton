@@ -1,21 +1,43 @@
 const requirements = {
-  sme: [
-    { label: "Annual Report" },
-    { label: "Business Plan" },
-    { label: "IPA Registration" },
-    {
-      label: "Must be a Green Business",
-      note: "A green business reduces environmental impact through clean energy, waste reduction, or eco-friendly operations."
-    },
-    { label: "Supplier Quote" }
-  ],
-  partnership: [{ label: "Memorandum of Understanding (MOU)" }],
-  individual: [
-    { label: "Proof of Income Source" },
-    { label: "Age Requirement (18 years or older)" },
-    { label: "Active BSP Account Status" },
-    { label: "Supplier Quote" }
-  ]
+  sme: {
+    items: [
+      { label: "Annual Report" },
+      { label: "Business Plan" },
+      { label: "IPA Registration" },
+      {
+        label: "Must be a Green Business that supports ESG principles",
+        note: "ESG stands for Environmental, Social, and Governance, covering responsible business practices such as sustainability, community impact, and good management."
+      },
+      { label: "Supplier Quote" }
+    ],
+    infoCards: [
+      { title: "Equity Contribution", detail: "Capital equity contribution must be at least 10% of the loan amount." },
+      { title: "Loan Terms", detail: "Available repayment period: 2 to 5 years." }
+    ]
+  },
+  partnership: {
+    items: [{ label: "Memorandum of Understanding (MOU)" }],
+    infoCards: []
+  },
+  individual: {
+    items: [
+      {
+        label: "Proof of Income Source",
+        note: "If rural applicant, collateral options may be negotiated (e.g. land, assets)."
+      },
+      {
+        label: "Cooperative or Registered Association membership (IPA-registered)",
+        note: "Especially relevant for rural applicants as an alternative collateral pathway."
+      },
+      { label: "Active BSP Account Status" },
+      { label: "Supplier Quote" },
+      { label: "BSP Savings Account held with BSP" }
+    ],
+    infoCards: [
+      { title: "Equity Contribution", detail: "Equity contribution must be at least 5% of the loan amount." },
+      { title: "Loan Terms", detail: "Available repayment period: 3 to 7 years." }
+    ]
+  }
 };
 
 const applicantType = document.getElementById("applicantType");
@@ -40,6 +62,15 @@ function renderChecklistItem(data, index) {
         </label>
         ${data.note ? `<p class="hint">Select or hover the info icon for qualification guidance.</p>` : ""}
       </div>
+    </div>
+  `;
+}
+
+function renderInfoCard(card) {
+  return `
+    <div class="info-card">
+      <p class="info-card-title">${card.title}</p>
+      <p>${card.detail}</p>
     </div>
   `;
 }
@@ -72,9 +103,13 @@ applicantType.addEventListener("change", () => {
 
   if (!selected) return;
 
-  checklist.innerHTML = requirements[selected]
-    .map((item, index) => renderChecklistItem(item, index))
-    .join("");
+  const config = requirements[selected];
+  const checklistMarkup = config.items.map((item, index) => renderChecklistItem(item, index)).join("");
+  const infoMarkup = config.infoCards.length
+    ? `<div class="info-cards">${config.infoCards.map((card) => renderInfoCard(card)).join("")}</div>`
+    : "";
+
+  checklist.innerHTML = `${checklistMarkup}${infoMarkup}`;
 
   checklist.querySelectorAll('input[type="checkbox"]').forEach((box) => {
     box.addEventListener("change", updateResult);

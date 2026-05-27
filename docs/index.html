@@ -389,7 +389,7 @@
     <header class="navbar">
       <div class="container navbar-inner">
         <a href="#home" class="brand">
-          <span class="brand-badge"><i data-lucide="leaf"></i></span>
+          <span class="brand-badge"><i data-lucide="leaf" aria-hidden="true"></i></span>
           BSP Green Loans Hackathon
         </a>
         <nav class="nav-links">
@@ -399,7 +399,7 @@
           <a href="#about">Team Bingo</a>
         </nav>
         <a class="cta-btn cta-primary" href="#precheck">
-          <i data-lucide="clipboard-check"></i>
+          <i data-lucide="clipboard-check" aria-hidden="true"></i>
           Check My Eligibility
         </a>
       </div>
@@ -409,7 +409,7 @@
       <section id="home" class="hero">
         <div class="container hero-grid reveal">
           <div>
-            <span class="chip"><i data-lucide="sprout"></i> Sustainable Finance</span>
+            <span class="chip"><i data-lucide="sprout" aria-hidden="true"></i> Sustainable Finance</span>
             <h1>BSP Green Loans Hackathon</h1>
             <p>
               Driving inclusive green financing for resilient businesses, strategic partnerships, and
@@ -417,7 +417,7 @@
             </p>
             <div style="margin-top: 1.2rem">
               <a class="cta-btn cta-primary" href="#precheck">
-                Start Pre-Check <i data-lucide="arrow-right"></i>
+                Start Pre-Check <i data-lucide="arrow-right" aria-hidden="true"></i>
               </a>
             </div>
           </div>
@@ -466,28 +466,28 @@
               <h3>Solar Rooftop Upgrade Loan</h3>
               <p>Funding support for rooftop solar procurement and installation for homes and SMEs.</p>
               <p class="category">Eligibility: Individual / SME</p>
-              <button class="link-btn">Learn More</button>
+              <a class="link-btn" href="#precheck">Learn More</a>
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Energy Efficient Equipment Facility</h3>
               <p>Loan package to replace high-energy equipment with verified efficient alternatives.</p>
               <p class="category">Eligibility: SME / Business</p>
-              <button class="link-btn">Learn More</button>
+              <a class="link-btn" href="#precheck">Learn More</a>
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Community Water Resilience Fund</h3>
               <p>Supports partnerships delivering water-saving and resilience-focused infrastructure.</p>
               <p class="category">Eligibility: Strategic Partnership</p>
-              <button class="link-btn">Learn More</button>
+              <a class="link-btn" href="#precheck">Learn More</a>
             </article>
             <article class="product-card">
               <span class="approved-tag">BSP Approved ✓</span>
               <h3>Green Mobility Starter Loan</h3>
               <p>Affordable financing for low-emission transport upgrades and supplier-backed purchases.</p>
               <p class="category">Eligibility: Individual / Partnership</p>
-              <button class="link-btn">Learn More</button>
+              <a class="link-btn" href="#precheck">Learn More</a>
             </article>
           </div>
         </div>
@@ -551,7 +551,7 @@
         partnership: ["Memorandum of Understanding (MOU)"],
         individual: [
           "Proof of Income Source",
-          "Age Requirement (minimum age met)",
+          "Age Requirement (18 years or older)",
           "Active BSP Account Status",
           "Supplier Quote"
         ]
@@ -571,7 +571,7 @@
                 ${data.label}
                 ${
                   data.note
-                    ? `<span class="tooltip"><i data-lucide="info"></i><span>${data.note}</span></span>`
+                    ? `<span class="tooltip"><i data-lucide="info" aria-hidden="true"></i><span>${data.note}</span></span>`
                     : ""
                 }
               </label>

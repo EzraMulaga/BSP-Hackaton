@@ -561,21 +561,21 @@
     <script>
       const requirements = {
         sme: [
-          "Annual Report",
-          "Business Plan",
-          "IPA Registration",
+          { label: "Annual Report" },
+          { label: "Business Plan" },
+          { label: "IPA Registration" },
           {
             label: "Must be a Green Business",
             note: "A green business reduces environmental impact through clean energy, waste reduction, or eco-friendly operations."
           },
-          "Supplier Quote"
+          { label: "Supplier Quote" }
         ],
-        partnership: ["Memorandum of Understanding (MOU)"],
+        partnership: [{ label: "Memorandum of Understanding (MOU)" }],
         individual: [
-          "Proof of Income Source",
-          "Age Requirement (18 years or older)",
-          "Active BSP Account Status",
-          "Supplier Quote"
+          { label: "Proof of Income Source" },
+          { label: "Age Requirement (18 years or older)" },
+          { label: "Active BSP Account Status" },
+          { label: "Supplier Quote" }
         ]
       };
 
@@ -583,8 +583,7 @@
       const checklist = document.getElementById("checklist");
       const result = document.getElementById("result");
 
-      function toChecklistItem(item, index) {
-        const data = typeof item === "string" ? { label: item } : item;
+      function renderChecklistItem(data, index) {
         return `
           <div class="check-item">
             <input type="checkbox" id="req-${index}" name="requirement-${index}" />
@@ -600,7 +599,7 @@
                     : ""
                 }
               </label>
-              ${data.note ? `<p class="hint">Hover the info icon for qualification guidance.</p>` : ""}
+              ${data.note ? `<p class="hint">Select or hover the info icon for qualification guidance.</p>` : ""}
             </div>
           </div>
         `;
@@ -631,7 +630,7 @@
         result.hidden = true;
         if (!selected) return;
         checklist.innerHTML = requirements[selected]
-          .map((item, index) => toChecklistItem(item, index))
+          .map((item, index) => renderChecklistItem(item, index))
           .join("");
         checklist.querySelectorAll('input[type="checkbox"]').forEach((box) => {
           box.addEventListener("change", updateResult);
@@ -640,13 +639,14 @@
         if (window.lucide) window.lucide.createIcons();
       });
 
+      const REVEAL_THRESHOLD = 0.16;
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) entry.target.classList.add("show");
           });
         },
-        { threshold: 0.16 }
+        { threshold: REVEAL_THRESHOLD }
       );
       document.querySelectorAll(".reveal").forEach((item) => observer.observe(item));
 

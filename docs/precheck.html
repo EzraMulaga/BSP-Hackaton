@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BSP Green Loans Hackathon | Home</title>
+    <title>BSP Green Loans Hackathon | Pre-Check</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,8 +20,8 @@
           BSP Green Loans Hackathon
         </a>
         <nav class="nav-links">
-          <a href="index.html" class="active">Home</a>
-          <a href="precheck.html">Pre-Check</a>
+          <a href="index.html">Home</a>
+          <a href="precheck.html" class="active">Pre-Check</a>
           <a href="products.html">Green Products</a>
           <a href="about.html">Team Bingo</a>
         </nav>
@@ -33,27 +33,23 @@
     </header>
 
     <main>
-      <section class="page-section hero">
-        <div class="container hero-grid reveal">
-          <div>
-            <span class="chip"><i data-lucide="sprout" aria-hidden="true"></i> Sustainable Finance</span>
-            <h1>BSP Green Loans Hackathon</h1>
-            <p>
-              Driving inclusive green financing for resilient businesses, strategic partnerships, and
-              households building a cleaner future.
-            </p>
-            <div style="margin-top: 1.2rem">
-              <a class="cta-btn cta-primary" href="precheck.html">
-                Start Pre-Check <i data-lucide="arrow-right" aria-hidden="true"></i>
-              </a>
-            </div>
-          </div>
-          <div class="hero-card">
-            <h3 style="margin-bottom: 0.5rem; color: #285b2d">Financing for Sustainable Development</h3>
-            <p>
-              Explore BSP-approved green loan options, check your application readiness, and prepare key
-              documents before submitting your request.
-            </p>
+      <section class="page-section">
+        <div class="container reveal">
+          <h2>Pre-Check Eligibility</h2>
+          <p class="section-lead">
+            Select your applicant type to view required items. Tick each item you already have to see your
+            readiness score and application status.
+          </p>
+          <div class="check-panel">
+            <label for="applicantType" class="field-label">Applicant Type</label>
+            <select id="applicantType">
+              <option value="">Select applicant category...</option>
+              <option value="sme">SME / Business</option>
+              <option value="partnership">Strategic Partnerships</option>
+              <option value="individual">Individual</option>
+            </select>
+            <div id="checklist" class="checklist"></div>
+            <div id="result" class="result-box" hidden></div>
           </div>
         </div>
       </section>
@@ -67,5 +63,6 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="main.js"></script>
+    <script src="precheck.js"></script>
   </body>
 </html>
